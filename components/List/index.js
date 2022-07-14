@@ -8,7 +8,7 @@ const List = (props) => {
             data={itemList}
             renderItem={data => (
                 <TouchableOpacity onPress={() => handleModal(data.item.id)} style={styles.item}>
-                    <Text style={[...styles.item, {
+                    <Text style={[styles.item, {
                         textDecorationStyle: data.item.completed ? 'dashed' : null,
                         color: data.item.completed ? 'green' : 'red'
                     }]}>{data.item.value}</Text>
