@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
 const List = (props) => {
-    const { itemList, handleModal, handleCompleteItem, itemSelected } = props;
+    const { itemList, handleModal, handleCompleteItem } = props;
 
     return (
         <FlatList
@@ -17,7 +17,7 @@ const List = (props) => {
                             Borrar
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleCompleteItem(itemSelected.id)} style={styles.itemBtn} >
+                    <TouchableOpacity onPress={() => handleCompleteItem(data.item.id)} style={styles.itemBtn} >
                         <Text>
                             Completar
                         </Text>
