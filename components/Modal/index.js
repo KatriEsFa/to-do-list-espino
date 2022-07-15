@@ -1,4 +1,4 @@
-import { Button, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import cruz from '../../assets/cruz.svg';
 
@@ -14,21 +14,6 @@ const CustomModal = (props) => {
         >
             <View style={styles.container}>
                 <View style={styles.modalView}>
-                    <View style={styles.modalTitle}>
-                        <View
-                            style={styles.modalHeader}>
-                            <TouchableOpacity
-                                onPress={() => closeModal()} >
-                                <Image
-                                    source={cruz}
-                                    style={styles.closeIcon}
-                                />
-                            </TouchableOpacity>
-                        </View>
-                        <Text>
-                            Modal
-                        </Text>
-                    </View>
                     <View stlye={styles.modalMessage}>
                         <Text>
                             ¿Desea Borrar?
@@ -39,13 +24,17 @@ const CustomModal = (props) => {
                             {itemSelected.value}
                         </Text>
                     </View>
-                    <View style={styles.modalBtn}>
-                        <Button onPress={() => handleDeleteItem(itemSelected.id)} title='Confirmar' />
-                        <Button onPress={() => closeModal()} title='Cancelar' />
+                    <View style={styles.modalBtnContainer}>
+                        <TouchableOpacity style={styles.modalDeleteOptions} onPress={() => handleDeleteItem(itemSelected.id)} title='Confirmar'>
+                            <Text style={styles.modalBtnTextTag}>Confirmar</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.modalDeleteOptions} onPress={() => closeModal()}>
+                            <Text style={styles.modalBtnTextTag}>Cancelar</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
-        </Modal >
+        </Modal>
     );
 }
 
@@ -56,20 +45,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgba(1,1,1,0.5)',
     },
-    modalHeader: {
-        height: 45,
-        width: '100%',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingHorizontal: 10
-    },
+
     closeIcon: {
         width: 30,
         height: 30,
     },
     modalView: {
-        backgroundColor: '#414240',
+        backgroundColor: '#e6e8e5',
         width: '80%',
         heigt: '60%',
         borderRadius: 20,
@@ -78,16 +60,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'column'
     },
-    modalTitle: {
-        color: 'white',
-        fontSize: 20,
-    },
     modalMessage: {
         margin: 10,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    modalButton: {
+    modalBtnContainer: {
         margin: 10,
         flexDirection: 'row',
         alignItems: 'center',
@@ -98,6 +76,15 @@ const styles = StyleSheet.create({
     },
     modalBtn: {
         flexDirection: 'row'
+    },
+    modalDeleteOptions: {
+        backgroundColor: '#42423e',
+        margin: 15,
+        padding: 10,
+        borderRadius: 5,
+    },
+    modalBtnTextTag: {
+
     }
 
 

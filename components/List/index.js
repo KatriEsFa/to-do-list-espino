@@ -12,16 +12,18 @@ const List = (props) => {
                         textDecorationLine: data.item.completed ? 'line-through' : null,
                         color: data.item.completed ? 'green' : 'red'
                     }]}>{data.item.value}</Text>
-                    <TouchableOpacity onPress={() => handleModal(data.item.id)} style={styles.itemBtn}>
-                        <Text>
-                            Borrar
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleCompleteItem(data.item.id)} style={styles.itemBtn} >
-                        <Text>
-                            Completar
-                        </Text>
-                    </TouchableOpacity>
+                    <View style={styles.btnContainer}>
+                        <TouchableOpacity onPress={() => handleModal(data.item.id)} style={styles.itemBtn}>
+                            <Text style={styles.itemBtnText}>
+                                Borrar
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => handleCompleteItem(data.item.id)} style={styles.itemBtn} >
+                            <Text style={styles.itemBtnText}>
+                                Completar
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             )}
             keyExtractor={(item) => item.id}
@@ -32,16 +34,35 @@ const List = (props) => {
 const styles = StyleSheet.create({
     itemContainer: {
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         borderWidth: 1,
-        backgroundColor: '#e6e8e5',
+        backgroundColor: '#1b1b18',
         borderColor: '#b4b6b3',
         borderRadius: 15,
-        marginTop: '15%',
-        height: 65,
-
+        marginTop: '5%',
+        height: 'auto',
+        marginLeft: 15,
+        marginRight: 15
     },
+    item: {
+        marginLeft: 15,
+    },
+    btnContainer: {
+        marginRight: 15,
+    },
+    itemBtn: {
+        backgroundColor: '#42423e',
+        margin: 5,
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 3,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    itemBtnText: {
+        color: 'white',
+    }
 
 
 
