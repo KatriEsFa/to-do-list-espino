@@ -1,8 +1,3 @@
-//un input text
-//un boton de borrar
-//se agregan en un array de strings
-//el array se muestra en una flat list
-
 import { StyleSheet, View } from "react-native";
 
 import AddItemBtn from "./AddItemBtn"
@@ -16,6 +11,7 @@ const ToDoList = () => {
     const [itemList, setItemList] = useState([]);
     const [itemSelected, setItemSelected] = useState({});
 
+
     const handleDeleteItem = (id) => {
         setItemList(currentItems => currentItems.filter(item => item.id !== id));
         setItemSelected({});
@@ -25,18 +21,21 @@ const ToDoList = () => {
     const addItem = () => {
         setItemList(currentItems => [...currentItems, { id: Date.now(), value: textItem, completed: false }]);
         setTextItem('')
-    }
+    };
 
     const handleModal = (id) => {
         setItemSelected(itemList.find(e => e.id === id));
         setModalVisible(!modalVisible)
-    }
+    };
 
     const handleCompleteItem = (id) => {
         let itemCompleted = itemList.findIndex((item) => item.id === id);
         itemList[itemCompleted].completed = true;
         setItemList([...itemList]);
-        setModalVisible(!modalVisible);
+    };
+
+    const closeModal = () => {
+        setModalVisible(!modalVisible)
     }
 
 
@@ -47,16 +46,20 @@ const ToDoList = () => {
                 modalVisible={modalVisible}
                 handleDeleteItem={handleDeleteItem}
                 itemSelected={itemSelected}
-                handleCompleteItem={handleCompleteItem}
+                closeModal={closeModal}
             />
+
             <AddItemBtn
                 textItem={textItem}
                 handleChangeItem={handleChangeItem}
                 addItem={addItem}
             />
+
             <List
                 itemList={itemList}
                 handleModal={handleModal}
+                handleCompleteItem={handleCompleteItem}
+                itemSelected={itemSelected}
             />
 
         </View>

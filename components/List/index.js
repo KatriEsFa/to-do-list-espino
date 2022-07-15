@@ -1,18 +1,28 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native"
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
 const List = (props) => {
-    const { itemList, handleModal } = props;
+    const { itemList, handleModal, handleCompleteItem, itemSelected } = props;
 
     return (
         <FlatList
             data={itemList}
             renderItem={data => (
-                <TouchableOpacity onPress={() => handleModal(data.item.id)} style={styles.item}>
-                    <Text style={[...styles.item, {
-                        textDecorationStyle: data.item.completed ? 'dashed' : null,
+                <View style={styles.itemContainer}>
+                    <Text style={[styles.item, {
+                        textDecorationLine: data.item.completed ? 'line-through' : null,
                         color: data.item.completed ? 'green' : 'red'
                     }]}>{data.item.value}</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleModal(data.item.id)} style={styles.itemBtn}>
+                        <Text>
+                            Borrar
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleCompleteItem(itemSelected.id)} style={styles.itemBtn} >
+                        <Text>
+                            Completar
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             )}
             keyExtractor={(item) => item.id}
         />
@@ -20,9 +30,9 @@ const List = (props) => {
 }
 
 const styles = StyleSheet.create({
-    item: {
+    itemContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
         backgroundColor: '#e6e8e5',
@@ -31,8 +41,10 @@ const styles = StyleSheet.create({
         marginTop: '15%',
         height: 65,
 
-
     },
+
+
+
 
 })
 

@@ -15,7 +15,7 @@ const AddItemBtn = (props) => {
                 onPress={addItem}
                 disabled={textItem.length < 1 ? true : false}
             >
-                <Text> Agregar</Text>
+                <Text style={styles.btnText}> Agregar</Text>
             </Pressable>
 
         </View>
@@ -28,10 +28,21 @@ const styles = StyleSheet.create({
 
     },
     textInput: {
-
+        borderColor: 'black',
+        borderWidth: 1,
+        padding: 10,
     },
     addBtn: {
+        backgroundColor: '#42423e',
+        marginLeft: 10,
+        padding: 10,
+        justifyContent: "center",
+        alignItems: 'center',
+        borderRadius: 15,
 
+    },
+    btnText: {
+        color: 'white',
 
     }
 })
