@@ -1,13 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 
+import BackgroundIMG from './assets/BackgroundIMG.png'
 import { StatusBar } from 'expo-status-bar';
 import ToDoList from './components/ToDoList';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <ToDoList />
-      <StatusBar style="auto" />
+      <ImageBackground source={BackgroundIMG}
+        resizeMode='cover'
+        style={styles.image}
+      >
+        <ToDoList />
+        <StatusBar style="auto" />
+      </ImageBackground>
     </View>
   );
 }
@@ -15,8 +21,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  image: {
+    width: '100%',
+    height: '100%'
+  }
 });
